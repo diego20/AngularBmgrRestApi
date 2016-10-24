@@ -22,19 +22,35 @@ function MainController($scope, $log, $location, $state, baseService) {
             }
         }
         var headers = {'AuthorizationInformation':$scope.authorizationInformation};
-
-        $scope.url = baseService.setParams($scope.parametersArray, 'https://52.7.15.19/BomgarVaultWebAPI/api/Credential/','');
-        baseService.getResource($scope.url,headers,
-            function(success){
-                $scope.results = success;
-                console.log($scope.results);
-            },
-            function(error){
-                if(error != null){
-                    $scope.errorMessage = error.Message;
-                    console.error(error);
-                }
-        });
+        //https://localhost:44325/api/Credential/
+        //https://52.7.15.19/BomgarVaultWebAPI/api/Credential/
+        //https://localhost/BomgarVaultWebAPI/api/Credential/
+        $scope.url = baseService.setParams($scope.parametersArray, 'https://localhost/BomgarVaultWebAPI/api/Credential/','');
+        if($scope.currentCredentialType !== 'credentialPost'){
+            baseService.getResource($scope.url,headers,
+                function(success){
+                    $scope.results = success;
+                    console.log($scope.results);
+                },
+                function(error){
+                    if(error != null){
+                        $scope.results = error.Message;
+                        console.error(error);
+                    }
+            });
+        }else if($scope.currentCredentialType === 'credentialPost'){
+            baseService.postResource($scope.url,headers,
+                function(success){
+                    $scope.results = success;
+                    console.log($scope.results);
+                },
+                function(error){
+                    if(error != null){
+                        $scope.results = error.Message;
+                        console.error(error);
+                    }
+            });
+        }
         $scope.hideResults = false;
     };
 
@@ -56,12 +72,9 @@ function MainController($scope, $log, $location, $state, baseService) {
         }
     }
 
-    $scope.resetContent = function(){
-        $scope.initVariables();
-    }
-
     $scope.changeCredentialType = function(credentialType){
         if(credentialType !== $scope.currentCredentialType){
+            $scope.initVariables();
             $scope.currentCredentialType = credentialType;
             $scope.results = {};
             $scope.hideResults = true;
@@ -86,22 +99,22 @@ function MainController($scope, $log, $location, $state, baseService) {
     }
 
     $scope.initVariables = function(){
-        $scope.securityScheme = 'Lorem Ipsum';
+        $scope.securityScheme = '';
         $scope.authorizationInformation = 'Th1s1sAK3y*';
 
         $scope.credentialListParameters = {};
         $scope.credentialsIdParameters = {};
 
-        $scope.credentialListParameters.loginUserName = 'Lorem Ipsum';
-        $scope.credentialListParameters.loginAuthorizationMethodConfiguration = 'pslcol';
-        $scope.credentialListParameters.IPV4 = '1.1.1.1';
-        $scope.credentialListParameters.credentialType = 'Lorem Ipsum';
-        $scope.credentialListParameters.domain = 'Lorem Ipsum';
-        $scope.credentialListParameters.hostname = 'Lorem Ipsum';
+        $scope.credentialListParameters.loginUserName = '';
+        $scope.credentialListParameters.loginAuthorizationMethodConfiguration = '';
+        $scope.credentialListParameters.IPV4 = '';
+        $scope.credentialListParameters.credentialType = '';
+        $scope.credentialListParameters.domain = '';
+        $scope.credentialListParameters.hostname = '';
 
-        $scope.credentialsIdParameters.loginUserName = 'Lorem Ipsum';
-        $scope.credentialsIdParameters.loginAuthorizationMethodConfiguration = 'pslcol';
-        $scope.credentialsIdParameters.CredentialId = '1';
+        $scope.credentialsIdParameters.loginUserName = '';
+        $scope.credentialsIdParameters.loginAuthorizationMethodConfiguration = '';
+        $scope.credentialsIdParameters.CredentialId = '';
 
         $scope.url = '';
         $scope.results = '';
