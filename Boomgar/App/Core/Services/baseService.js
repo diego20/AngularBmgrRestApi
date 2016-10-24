@@ -52,26 +52,6 @@ function baseService($http, $q) {
     //API Calls Methods
 
     var getResource = function (url, headers, callbackGet, callbackGetError) {
-//
-//        $.ajax({
-//        url: "https://52.7.15.19/BomgarVaultWebAPI/Api/Credential/?LoginUserName=Dfarfanb&LoginAuthorizationMethodConfiguration=Pslcol&IPV4=&CredentialType=&Domain=&Hostname=",
-//        dataType : 'json',
-//        type : 'GET',
-//        crossDomain : true,
-//        //headers : headers,
-//        beforeSend: function (xhr) {
-//            xhr.setRequestHeader ("AuthorizationInformation", "Thioen");
-//        },
-//        success:function(json){
-//            debugger;
-//            console.log(json);
-//        },
-//        error:function(obj1, obj2){
-//            debugger;
-//            console.log(obj2);
-//        }
-//    });
-
         var req = {
             method:'GET',
             url:url,
