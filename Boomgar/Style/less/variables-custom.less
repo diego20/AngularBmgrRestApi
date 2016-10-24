@@ -1,0 +1,62 @@
+// Color Picker
+
+@black:                 #000;
+@white:                 #FFF;
+@gray-dark:             #253746;
+@orange:                #FF5500;
+@gray-medium:           #3B4B59;
+@gray-light:            #9DA5AC;
+@button:                #ECEDEF;
+
+
+// Font Style
+
+@font-stack:            'Open Sans', sans-serif;
+
+
+
+
+// Font Weight
+
+.semibold {
+    font-family: @font-stack;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.regular {
+    font-family: @font-stack;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.light {
+    font-family: @font-stack;
+    font-weight: 300;
+    font-style: normal;
+}
+
+
+// Some Effects
+
+.transition-all (@transition: all 0s ease) {
+    -webkit-transition: @transition;
+    -moz-transition: @transition;
+    -ms-transition: @transition;
+    -o-transition: @transition;
+    transition: @transition;
+}
+
+.rounded-corners (@radius: 0px) {
+  -webkit-border-radius: @radius;
+  -moz-border-radius: @radius;
+  -ms-border-radius: @radius;
+  -o-border-radius: @radius;
+  border-radius: @radius;
+}
+
+.box-shadow (@shadow: 0 0 0 0 rgba(0,0,0,0)){
+    -webkit-box-shadow: @shadow;
+    box-shadow: @shadow;
+}
+

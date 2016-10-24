@@ -1,0 +1,198 @@
+///// FONT ICON ///////
+
+@charset "UTF-8";
+
+
+
+/////////////// END ICON FONT ////////////////
+
+
+// UI Kit
+
+/////Main button color
+.btn-primary {
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;
+    margin-top: 0px;
+    height: 32px;
+    color: @black !important;
+    background: @button !important;
+    border-color: @button;
+    &:hover {
+        background: darken(@orange, 2%) !important;
+        border-color: darken(@orange, 2%);
+        color: @black !important;
+    }
+    &:active, &:visited, &:focus {
+        background: @button;
+        border-color: @button;
+        color: @white;
+    }
+    &[disabled] {
+        cursor: not-allowed;
+        opacity: .20;
+    }
+}
+
+// Esential structure
+
+body {
+    background-color: @gray-dark !important;
+    .regular;
+}
+
+ul{
+    color: white;
+}
+
+.well {
+    background-color: @gray-medium !important;
+	-webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;
+    margin-top: 25px;
+    min-height: 550px;
+    position: relative;
+}
+
+.rightBar{
+    .well{
+        padding-top: 0px !important;
+        padding-left: 5px !important;
+        padding-right: 5px !important;
+        padding-bottom: 0px !important;
+    }
+}
+
+.form-group {
+    margin-top: 0px;
+    margin-bottom: 7px;
+    label.control-label {
+    left: 12px;
+    top: -10px;
+    }
+
+    .form-control {
+        border: 1px solid @gray-light !important;
+        background-image: none;
+        background-position: center bottom, center calc(100% - 0px);
+        -webkit-border-radius: 0px;
+        -moz-border-radius: 0px;
+        border-radius: 0px;
+        height: 30px;
+		color: @white;
+        padding-left: 8px;
+		&:hover{
+			border:1px solid @orange !important;
+
+		}
+    }
+}
+
+h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    color: @white;
+}
+
+label {
+    font-size: 13px !important;
+    text-transform: capitalize;
+    color: @white !important;
+}
+
+.form-group.is-focused label, .form-group.is-focused label.control-label {
+    color: @orange;
+}
+
+
+
+.buttons {
+    bottom: 20px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 48px;
+}
+
+.header-well {
+    color: @white;
+    background-color: #455461;
+    min-height: 35px;
+    position: relative;
+    top: -19px;
+    margin-left: -18px;
+    margin-right: -18px;
+    margin-bottom: -19px;
+
+
+    span {
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    right: 15px;
+    top: 6px;
+    &:last-child {
+    color: @orange;
+    }
+    }
+
+	h2{
+		padding-top: 11px;
+        padding-left: 14px;
+        padding-right: 14px;
+        padding-bottom: 10px;
+    	margin-top: 0px;
+	}
+}
+
+
+///// boostrap override ////
+
+
+// Header Builder
+
+header {
+    min-height: 55px;
+    border-bottom: 2px solid @orange;
+    width: 100%;
+	color: @white;
+
+
+    img {
+        margin-top: 10px;
+    }
+}
+
+
+//////////// UI GRID STYLES  //////////
+
+
+/////LINE//////
+hr {
+    position: absolute;
+	width: 49%;
+	border-color: @orange;
+ }
+.line-one{
+	top: 5px;
+    right: 14px;
+}
+.line-two{
+	top: 119px;
+    right: 14px;
+	width: 42%;
+}
+
+
+.asterisk{
+	color: @black;
+	font-weight: bold;
+}
+
+
+.space-top{
+	margin-top: 44px;
+}
+

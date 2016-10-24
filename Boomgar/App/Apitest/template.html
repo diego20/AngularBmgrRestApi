@@ -1,0 +1,170 @@
+<article>
+    <div class="row">
+        <!--Div de left bar-->
+        <div class="col-sm-2">
+            <div class="well clearfix leftSideBar ng-class:{'leftBoxSelected':currentCredentialType === 'credentialList'}">
+                <div class="col-12 header-well">
+                    <h2>Credential List</h2>
+                </div>
+                <button ng-click="changeCredentialType('credentialList')" class="btn btn-success pull-right">Get</button>
+            </div>
+            <div class="well clearfix leftSideBar ng-class:{'leftBoxSelected':currentCredentialType === 'credentialId'}">
+                <div class="col-12 header-well">
+                    <h2>Credentials Id</h2>
+                </div>
+                <button ng-click="changeCredentialType('credentialId')" class="btn btn-success pull-right">Get</button>
+            </div>
+            <div class="well clearfix leftSideBar ng-class:{'leftBoxSelected':currentCredentialType === 'credentialPost'}">
+                <div class="col-12 header-well">
+                    <h2>Credentials Id Locks</h2>
+                </div>
+                <button ng-click="changeCredentialType('credentialPost')" class="btn btn-success pull-right">Post</button>
+            </div>
+        </div>
+        <!--#Div de left bar-->
+
+
+        <!--Div central-->
+        <div class="col-sm-7">
+            <div class="well clearfix">
+                <div class="col-12 header-well text-right">
+                    <span>Credential</span>
+                    <span>{{headerRestType}}</span>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h2>Authentication</h2><hr class="line-one">
+                        <div class="form-group">
+                            <label>Security Scheme:</label>
+                            <input class="form-control" ng-model='securityScheme' ng-click='selectParameter("Security scheme")'>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <h2>Headers</h2><hr class="line-one">
+                        <div class="form-group">
+                            <label>Authorization Information:</label>
+                            <input class="form-control" ng-model='authorizationInformation' ng-click='selectParameter("Authorization Information")'>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <h2>Query Parameters</h2><hr class="line-one">
+                    </div>
+                </div>
+                <div ng-if='currentCredentialType === "credentialList"'>
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <div class="form-group">
+                                <label>IPV4:</label>
+                                <input type="text" class="form-control" ng-model='credentialListParameters.IPV4' ng-click='selectParameter("IPv4")'>
+                            </div>
+                            <div class="form-group">
+                                <label>Domain:</label>
+                                <input type="text" class="form-control" ng-model='credentialListParameters.domain' ng-click='selectParameter("Domain")'>
+                            </div>
+                            <div class="form-group">
+                                <label>Login Authorization Method Configuration:</label>
+                                <input type="text" class="form-control" ng-model='credentialListParameters.loginAuthorizationMethodConfiguration' ng-click='selectParameter("Login authorization method configuration")'>
+                            </div>
+                            <div class="form-group">
+                                <label>Login Username:</label>
+                                <input type="text" class="form-control" ng-model='credentialListParameters.loginUserName' ng-click='selectParameter("Login username")'>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Hostname:</label>
+                                <input type="text" class="form-control" ng-model='credentialListParameters.hostname' ng-click='selectParameter("Hostname")'>
+                            </div>
+                            <div class="form-group">
+                                <label>Credential Type:</label>
+                                <input type="text" class="form-control" ng-model='credentialListParameters.credentialType' ng-click='selectParameter("Credential type")'>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div ng-if='currentCredentialType !== "credentialList"'>
+                    <div class="row">
+                        <div class='col-sm-6'>
+                            <div class="form-group">
+                                <label>Credential Id:</label>
+                                <input type="text" class="form-control" ng-model='credentialsIdParameters.CredentialId' ng-click='selectParameter("Credential Id")'>
+                            </div>
+                            <div class="form-group">
+                                <label>Login authorization method configuration:</label>
+                                <input type="text" class="form-control" ng-model='credentialsIdParameters.loginAuthorizationMethodConfiguration' ng-click='selectParameter("Login authorization method configuration")'>
+                            </div>
+                            <div class="form-group">
+                                <label>Login Username:</label>
+                                <input type="text" class="form-control" ng-model='credentialsIdParameters.loginUserName' ng-click='selectParameter("Login username")'>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 text-right buttons">
+                    <button type="button" class="btn btn-primary btn-md" ng-click="send()">Send</button>
+                    <button type="button" class="btn btn-primary btn-md" ng-click="clearContent()">Clear</button>
+                    <button type="button" class="btn btn-primary btn-md" ng-click="resetContent()">Reset</button>
+                </div>
+            </div>
+        </div>
+        <!--#Div central-->
+
+
+        <!--Div Derecho-->
+        <div class="col-sm-3 rightBar">
+            <div class="well">
+                <div class="col-sm-12">
+                    <h2>{{selectedParameter}}</h2>
+                    <div ng-if='selectedParameter !== "Security scheme"'>
+                            <label>{{parameterContent}}</label>
+                    </div>
+                    <div ng-if='selectedParameter === "Security scheme"'>
+                        <ul>
+                            <li>{{parameterContent}}</li>
+                            <li>{{parameterContent2}}</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-12" ng-if='selectedParameter === "Authorization Information"'>
+                        <h2>Details: <b>db.t2.medium</b></h2>
+                        <div class="col-sm-6 text-right">
+                            <label>Type</label><br><br>
+                            <label>vCPU</label><br>
+                            <label>Memory</label><br>
+                            <label>EBS Optimized</label><br>
+                            <label>Network performance</label><br>
+                            <label>Free tier elegible</label>
+                        </div>
+                        <div class="col-sm-6">
+                            <label>Micro instance current</label><br>
+                            <label>2 vCPU</label><br>
+                            <label>4 GiB</label><br>
+                            <label>No</label><br><br>
+                            <label>Moderate</label><br><br>
+                            <label>No</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--#Div Derecho-->
+    </div>
+
+    <!--Div de resultados-->
+
+    <div class="row" ng-if='!hideResults'>
+            <div class="col-sm-12">
+                <div class="well clearfix">
+                    <h2>Request Url</h2>
+                    <label>{{url}}</label>
+                    <h2>Body</h2>
+
+                    <pre>{{results|json}}</pre>
+                </div>
+            </div>
+    </div>
+
+    <!--#Div de resultados-->
+
+</article>
+
+
