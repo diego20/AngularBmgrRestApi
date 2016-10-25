@@ -4,6 +4,7 @@ require('./bomgar.scss');
 require('bootstrap-material-design/dist/css/bootstrap-material-design.css');
 //require("../Style/main.css");
 require("../Style/less/main.less");
+require("angular-translate");
 
 require('./Apitest/init');
 require('./Core/init');

@@ -1,4 +1,4 @@
-function MainController($scope, $log, $location, $state, baseService) {
+function MainController($scope, $log, $location, $state, baseService, $translate) {
 
     $scope.send = function () {
         $scope.results = {};
@@ -25,7 +25,7 @@ function MainController($scope, $log, $location, $state, baseService) {
         //https://localhost:44325/api/Credential/
         //https://52.7.15.19/BomgarVaultWebAPI/api/Credential/
         //https://localhost/BomgarVaultWebAPI/api/Credential/
-        $scope.url = baseService.setParams($scope.parametersArray, 'https://localhost/BomgarVaultWebAPI/api/Credential/','');
+        $scope.url = baseService.setParams($scope.parametersArray, 'http://localhost/BomgarVaultWebAPI/api/Credential/','');
         if($scope.currentCredentialType !== 'credentialPost'){
             baseService.getResource($scope.url,headers,
                 function(success){
@@ -56,6 +56,8 @@ function MainController($scope, $log, $location, $state, baseService) {
 
 
     $scope.clearContent = function(){
+        $scope.parameterContentDescription = '';
+        $scope.parameterContentExample = '';
         $scope.authorizationInformation = '';
         $scope.securityScheme = '';
         if($scope.currentCredentialType === 'credentialList'){
@@ -79,28 +81,84 @@ function MainController($scope, $log, $location, $state, baseService) {
             $scope.results = {};
             $scope.hideResults = true;
             $scope.selectedParameter = '';
-            $scope.parameterContent = '';
-            $scope.parameterContent2 = '';
+            $scope.parameterContentDescription = '';
+            $scope.parameterContentExample = '';
             credentialType === 'credentialPost' ? $scope.headerRestType = 'POST' : $scope.headerRestType = 'GET';
         }
     }
 
     $scope.selectParameter = function(parameter){
-        $scope.selectedParameter = parameter;
-        $scope.parameterContent2 = '';
-        if(parameter === 'Security scheme'){
-            $scope.parameterContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fermentum odio vitae nibh volutpat scelerisque. Sed augue metus, varius in maximus at, vestibulum vitae felis.';
-            $scope.parameterContent2 = 'Integer purus leo, egestas id diam sit amet, pulvinar maximus purus. In lacinia est fermentum dui pharetra, id venenatis nibh congue. Nunc venenatis sit amet mauris a ornare. Curabitur tincidunt sit amet ligula quis tempor.';
-        }else if(parameter === 'Authorization Information'){
-            $scope.parameterContent = 'Aenean placerat dignissim tellus at tempor. Suspendisse potenti. Mauris rutrum euismod sem sit amet egestas. Maecenas hendrerit augue lorem, sit amet scelerisque lectus facilisis vel. Phasellus at lacinia justo. Nullam lacus risus, tristique quis neque sed, consequat gravida urna. Nunc congue volutpat dignissim.';
-        }else{
-            $scope.parameterContent = 'Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In nec felis gravida nunc sodales porta ut non nisi. Curabitur ac sapien diam. In hac habitasse platea dictumst. Fusce semper, magna sit amet blandit pretium, tortor sem commodo dolor, nec elementum turpis risus non nisi.';
+        $scope.parameterContentDescription = '';
+        $scope.parameterContentExample = '';
+        $translate(parameter).then(function(translations){
+                $scope.selectedParameter = translations;
+        });
+        if(parameter === 'AUTHORIZATION_INFORMATION'){
+            $translate(['AUTHORIZATION_INFORMATION_DESCRIPTION','AUTHORIZATION_INFORMATION_EXAMPLE']).then(function(translations){
+                $scope.parameterContentDescription = translations.AUTHORIZATION_INFORMATION_DESCRIPTION;
+                $scope.parameterContentExample = translations.AUTHORIZATION_INFORMATION_EXAMPLE;
+                $scope.clearSelectedParameterWhenNoInfo(parameter);
+            });
+        }else if(parameter === 'SECURITY_SCHEME'){
+            $translate(['SECURITY_SCHEME_DESCRIPTION','SECURITY_SCHEME_EXAMPLE']).then(function(translations){
+                $scope.parameterContentDescription = translations.SECURITY_SCHEME_DESCRIPTION;
+                $scope.parameterContentExample = translations.SECURITY_SCHEME_EXAMPLE;
+                $scope.clearSelectedParameterWhenNoInfo(parameter);
+            });
+        }else if(parameter === 'IPV4'){
+            $translate(['IPV4_DESCRIPTION','IPV4_EXAMPLE']).then(function(translations){
+                $scope.parameterContentDescription = translations.IPV4_DESCRIPTION;
+                $scope.parameterContentExample = translations.IPV4_EXAMPLE;
+                $scope.clearSelectedParameterWhenNoInfo(parameter);
+            });
+        }else if(parameter === 'CREDENTIAL_TYPE'){
+            $translate(['CREDENTIAL_TYPE_DESCRIPTION','CREDENTIAL_TYPE_EXAMPLE']).then(function(translations){
+                $scope.parameterContentDescription = translations.CREDENTIAL_TYPE_DESCRIPTION;
+                $scope.parameterContentExample = translations.CREDENTIAL_TYPE_EXAMPLE;
+                $scope.clearSelectedParameterWhenNoInfo(parameter);
+            });
+        }else if(parameter === 'DOMAIN'){
+            $translate(['DOMAIN_DESCRIPTION','DOMAIN_EXAMPLE']).then(function(translations){
+                $scope.parameterContentDescription = translations.DOMAIN_DESCRIPTION;
+                $scope.parameterContentExample = translations.DOMAIN_EXAMPLE;
+                $scope.clearSelectedParameterWhenNoInfo(parameter);
+            });
+        }else if(parameter === 'HOSTNAME'){
+            $translate(['HOSTNAME_DESCRIPTION','HOSTNAME_EXAMPLE']).then(function(translations){
+                $scope.parameterContentDescription = translations.HOSTNAME_DESCRIPTION;
+                $scope.parameterContentExample = translations.HOSTNAME_EXAMPLE;
+                $scope.clearSelectedParameterWhenNoInfo(parameter);
+            });
+        }else if(parameter === 'LOGIN_AUTHORIZATION_METHOD_CONFIGURATION'){
+            $translate(['LOGIN_AUTHORIZATION_METHOD_CONFIGURATION_DESCRIPTION','LOGIN_AUTHORIZATION_METHOD_CONFIGURATION_EXAMPLE']).then(function(translations){
+                $scope.parameterContentDescription = translations.LOGIN_AUTHORIZATION_METHOD_CONFIGURATION_DESCRIPTION;
+                $scope.parameterContentExample = translations.LOGIN_AUTHORIZATION_METHOD_CONFIGURATION_EXAMPLE;
+                $scope.clearSelectedParameterWhenNoInfo(parameter);
+            });
+        }else if(parameter === 'LOGIN_USERNAME'){
+            $translate(['LOGIN_USERNAME_DESCRIPTION','LOGIN_USERNAME_EXAMPLE']).then(function(translations){
+                $scope.parameterContentDescription = translations.LOGIN_USERNAME_DESCRIPTION;
+                $scope.parameterContentExample = translations.LOGIN_USERNAME_EXAMPLE;
+                $scope.clearSelectedParameterWhenNoInfo(parameter);
+            });
+        }else if(parameter === 'CREDENTIAL_ID'){
+            $translate(['CREDENTIAL_ID_DESCRIPTION','CREDENTIAL_ID_EXAMPLE']).then(function(translations){
+                $scope.parameterContentDescription = translations.CREDENTIAL_ID_DESCRIPTION;
+                $scope.parameterContentExample = translations.CREDENTIAL_ID_EXAMPLE;
+                $scope.clearSelectedParameterWhenNoInfo(parameter);
+            });
+        }
+    }
+
+    $scope.clearSelectedParameterWhenNoInfo = function(parameter){
+        if($scope.parameterContentDescription === '' && $scope.parameterContentExample === ''){
+            $scope.selectedParameter = '';
         }
     }
 
     $scope.initVariables = function(){
         $scope.securityScheme = '';
-        $scope.authorizationInformation = 'Th1s1sAK3y*';
+        $scope.authorizationInformation = '';
 
         $scope.credentialListParameters = {};
         $scope.credentialsIdParameters = {};
@@ -125,13 +183,13 @@ function MainController($scope, $log, $location, $state, baseService) {
         $scope.currentCredentialType = 'credentialList';
         $scope.headerRestType = 'GET';
         $scope.selectedParameter = '';
-        $scope.parameterContent = '';
-        $scope.parameterContent2 = '';
+        $scope.parameterContentDescription = '';
+        $scope.parameterContentExample = '';
         $scope.initVariables();
     }
     init();
 
 };
 
-MainController.$inject = ['$scope', '$log', '$location', '$state', 'baseService'];
+MainController.$inject = ['$scope', '$log', '$location', '$state', 'baseService', '$translate'];
 module.exports = MainController;
