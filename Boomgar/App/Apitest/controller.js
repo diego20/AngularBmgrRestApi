@@ -94,6 +94,11 @@ function MainController($scope, $log, $location, $state, baseService, $translate
         $translate(parameter).then(function(translations){
             $scope.selectedParameter = translations;
         });
+        if($scope.parameterContentExampleText === ''){
+            $translate("EXAMPLE_TEXT").then(function(tranlation){
+                $scope.parameterContentExampleText = tranlation;
+            })
+        }
         if(parameter === 'AUTHORIZATION_INFORMATION'){
             $translate(['AUTHORIZATION_INFORMATION_DESCRIPTION','AUTHORIZATION_INFORMATION_EXAMPLE']).then(function(translations){
                 $scope.parameterContentDescription = translations.AUTHORIZATION_INFORMATION_DESCRIPTION;
@@ -154,6 +159,9 @@ function MainController($scope, $log, $location, $state, baseService, $translate
     $scope.clearSelectedParameterWhenNoInfo = function(){
         if($scope.parameterContentDescription === '' && $scope.parameterContentExample === ''){
             $scope.selectedParameter = '';
+            $scope.parameterContentExampleText = '';
+        }else if($scope.parameterContentExample === ''){
+            $scope.parameterContentExampleText = '';
         }
     }
 
@@ -186,6 +194,7 @@ function MainController($scope, $log, $location, $state, baseService, $translate
         $scope.selectedParameter = '';
         $scope.parameterContentDescription = '';
         $scope.parameterContentExample = '';
+        $scope.parameterContentExampleText = '';
         $scope.responseHeaders = {};
         $scope.initVariables();
     }
