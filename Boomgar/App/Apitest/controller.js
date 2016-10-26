@@ -30,15 +30,17 @@ function MainController($scope, $log, $location, $state, baseService, $translate
         //https://52.7.15.19/BomgarVaultWebAPI/api/Credential/
         //https://localhost/BomgarVaultWebAPI/api/Credential/
         $scope.url = baseService.setParams($scope.parametersArray, 'https://localhost/BomgarVaultWebAPI/api/Credential/','');
-        var successFunction = function(success){
+        var successFunction = function(success, headers){
             $scope.results = success;
+            $scope.responseHeaders = headers();
             console.log($scope.results);
         };
-        var errorFunction = function(error){
+        var errorFunction = function(error, headers){
             if(error != null){
                 $scope.results = error.Message;
                 console.error(error);
             }
+            $scope.responseHeaders = headers();
         };
         if($scope.currentCredentialType === 'credentialList' || $scope.currentCredentialType === 'credentialId'){
             baseService.getResource($scope.url, headers, successFunction, errorFunction);
@@ -184,6 +186,7 @@ function MainController($scope, $log, $location, $state, baseService, $translate
         $scope.selectedParameter = '';
         $scope.parameterContentDescription = '';
         $scope.parameterContentExample = '';
+        $scope.responseHeaders = {};
         $scope.initVariables();
     }
     init();

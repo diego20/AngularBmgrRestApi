@@ -58,9 +58,9 @@ function baseService($http) {
             headers:headers
         }
         return $http(req).then(function successCallback(response) {
-            callbackGet(response.data);
+            callbackGet(response.data, response.headers);
         }, function errorCallback(response) {
-            callbackGetError(response.data);
+            callbackGetError(response.data, response.headers);
         });
 
     };
@@ -72,9 +72,9 @@ function baseService($http) {
             headers:headers
         }
         return $http(req).then(function successCallback(response) {
-            callbackPost(response.data);
+            callbackPost(response.data, response.headers);
         }, function errorCallback(response) {
-            callbackGetError(response.data);
+            callbackGetError(response.data, response.headers);
         });
 
     };

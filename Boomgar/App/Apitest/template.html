@@ -3,7 +3,7 @@
         <!--Div de left bar-->
         <div class="col-sm-2">
             <div class="well clearfix leftSideBar ng-class:{'leftBoxSelected':currentCredentialType === 'credentialList'}">
-                <div class="col-12 header-well">
+                <div class="header-well">
                     <h2>{{'CREDENTIAL_LIST'|translate}}</h2>
                 </div>
                 <button ng-click="changeCredentialType('credentialList')" class="btn btn-success pull-right">Get</button>
@@ -151,8 +151,26 @@
                 <div class="well clearfix">
                     <h2>{{'REQUEST_URL'|translate}}</h2>
                     <label>{{url}}</label>
-                    <h2>{{'BODY'|translate}}</h2>
+                    <table class="table table-borderless">
+                        <thead>
+                            <tr>
+                                <th>Pragma:</th>
+                                <th>Content-type:</th>
+                                <th>Cache Control:</th>
+                                <th>Expires:</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{responseHeaders.pragma}}</td>
+                                <td>{{responseHeaders["content-type"]}}</td>
+                                <td>{{responseHeaders["cache-control"]}}</td>
+                                <td>{{responseHeaders.expires}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
+                    <h2>{{'BODY'|translate}}</h2>
                     <pre>{{results|json}}</pre>
                 </div>
             </div>
