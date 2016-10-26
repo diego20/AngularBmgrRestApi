@@ -1,4 +1,4 @@
-function baseService($http, $q) {
+function baseService($http) {
     // String processor
     var setQueryString = function (parameters) {
 
@@ -88,8 +88,8 @@ function baseService($http, $q) {
         getResource: getResource,
         postResource: postResource
     };
-};
+}
 
-baseService.$inject = ['$http', '$q'];
+baseService.$inject = ['$http'];
 
 module.exports = baseService;

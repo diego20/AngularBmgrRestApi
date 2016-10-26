@@ -50,8 +50,15 @@ module.exports = {
             {
                 test: /bootstrap-sass\/assets\/javascripts\//,
                 loader: 'imports?jQuery=jquery'
+            },
+            {
+                test: /\.js$/, loader: "eslint-loader", exclude: /node_modules/
             }
 		]
+    },
+
+     eslint: {
+      configFile: './.eslintrc'
     },
 
     plugins: [

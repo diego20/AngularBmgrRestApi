@@ -1,8 +1,5 @@
 function Router($stateProvider, $urlRouterProvider) {
-
     $urlRouterProvider.otherwise('/');
-
-
     $stateProvider
         .state('home', {
             url: '/',
@@ -19,15 +16,10 @@ function Router($stateProvider, $urlRouterProvider) {
                     template:require('html!../Apitest/template.html'),
                     controller:'ApitestController'
                 }
-
             }
         });
-
     //To add new routes just remove semicolon and add a new "state" Call using chaining.
-
-};
+}
 
 Router.$inject = ['$stateProvider', '$urlRouterProvider'];
-
-
 module.exports = Router;
