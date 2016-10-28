@@ -35,6 +35,10 @@
     }
 }
 
+.btn-success{
+	color: @white !important;
+}
+
 // Esential structure
 
 body {
@@ -54,15 +58,6 @@ ul{
     margin-top: 25px;
     min-height: 550px;
     position: relative;
-}
-
-.rightBar{
-    .well{
-        padding-top: 0px !important;
-        padding-left: 5px !important;
-        padding-right: 5px !important;
-        padding-bottom: 0px !important;
-    }
 }
 
 .form-group {
@@ -85,8 +80,11 @@ ul{
         padding-left: 8px;
 		&:hover{
 			border:1px solid @orange !important;
-
-		}
+        }
+        &:focus{
+            background: rgba(98, 111, 122, 0.72);
+            border:1px solid @orange !important;
+        }
     }
 }
 
@@ -99,6 +97,7 @@ h2 {
 label {
     font-size: 13px !important;
     color: @white !important;
+    overflow-wrap : break-word;
 }
 
 .form-group.is-focused label, .form-group.is-focused label.control-label {
@@ -171,7 +170,7 @@ header {
 /////LINE//////
 hr {
     position: absolute;
-	width: 49%;
+	width: 47%;
 	border-color: @orange;
  }
 .line-one{
@@ -195,8 +194,65 @@ hr {
 	margin-top: 44px;
 }
 
+
+///// ARROW  /////
+
+.arrow_box {
+	position: relative;
+	background: #88b7d5;
+	border: 1px solid #c2e1f5;
+}
+.arrow_box:after, .arrow_box:before {
+	left: 100%;
+	top: 50%;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-left-color: #88b7d5;
+	border-width: 70px;
+	margin-top: -70px;
+}
+.arrow_box:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-left-color: #c2e1f5;
+	border-width: 71px;
+	margin-top: -71px;
+}
+
+
+.orange-label-border{
+  color:  @white;
+  padding-left: 0px;
+  border-bottom: 1px solid @orange;
+  //margin-bottom: 25px;
+  li {
+    background-color: @gray-medium;
+    display: inline-block;
+    list-style-type: none;
+    position: relative;
+    top: 8px;
+	padding-right: 10px;
+	text-transform: uppercase;
+    //font-weight: 500;
+    //text-transform: uppercase;
+    //padding-right: 10px
+  }
+}
+
+@media (max-width: 991px){
+    .well{
+        min-height: 50px;
+    }
+}
+
 .table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th{
     border:none;
     color: @white;
 }
-

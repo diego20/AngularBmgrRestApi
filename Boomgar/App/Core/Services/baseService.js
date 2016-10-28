@@ -76,7 +76,19 @@ function baseService($http) {
         }, function errorCallback(response) {
             callbackGetError(response.data, response.headers);
         });
+    };
 
+    var deleteResource = function (url, headers, callbackDelete, callbackGetError) {
+        var req = {
+            method:'DELETE',
+            url:url,
+            headers:headers
+        }
+        return $http(req).then(function successCallback(response) {
+            callbackDelete(response.data, response.headers);
+        }, function errorCallback(response) {
+            callbackGetError(response.data, response.headers);
+        });
     };
 
 
@@ -86,7 +98,8 @@ function baseService($http) {
     return {
         setParams: setParams,
         getResource: getResource,
-        postResource: postResource
+        postResource: postResource,
+        deleteResource: deleteResource
     };
 }
 

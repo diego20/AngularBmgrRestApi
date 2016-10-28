@@ -1,7 +1,7 @@
 <article>
     <div class="row">
         <!--Div de left bar-->
-        <div class="col-sm-2">
+        <div class="col-md-2 col-sm-3">
             <div class="well clearfix leftSideBar ng-class:{'leftBoxSelected':currentCredentialType === 'credentialList'}">
                 <div class="header-well">
                     <h2>{{'CREDENTIAL_LIST'|translate}}</h2>
@@ -9,24 +9,24 @@
                 <button ng-click="changeCredentialType('credentialList')" class="btn btn-success pull-right">Get</button>
             </div>
             <div class="well clearfix leftSideBar ng-class:{'leftBoxSelected':currentCredentialType === 'credentialId'}">
-                <div class="col-12 header-well">
+                <div class="header-well">
                     <h2>{{'CREDENTIALS_ID'|translate}}</h2>
                 </div>
                 <button ng-click="changeCredentialType('credentialId')" class="btn btn-success pull-right">Get</button>
             </div>
-            <div class="well clearfix leftSideBar ng-class:{'leftBoxSelected':currentCredentialType === 'credentialPost'}">
-                <div class="col-12 header-well">
+            <div class="well clearfix leftSideBar ng-class:{'leftBoxSelected':currentCredentialType === 'credentialPost' || currentCredentialType === 'credentialDelete'}">
+                <div class="header-well">
                     <h2>{{'CREDENTIALS_ID_LOCKS'|translate}}</h2>
                 </div>
                 <button ng-click="changeCredentialType('credentialPost')" class="btn btn-success pull-right">Post</button>
-                <button ng-click="changeCredentialType('credentialPost')" class="btn btn-success pull-right">Delete</button>
+                <button ng-click="changeCredentialType('credentialDelete')" class="btn btn-success pull-right">Delete</button>
             </div>
         </div>
         <!--#Div de left bar-->
 
 
         <!--Div central-->
-        <div class="col-sm-7">
+        <div class="col-md-7 col-sm-9">
             <div class="well clearfix">
                 <div class="col-12 header-well text-right">
                     <span>{{'CREDENTIAL'|translate}}</span>
@@ -34,76 +34,82 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        <h2>{{'AUTHENTICATION'|translate}}</h2><hr class="line-one">
+                        <ul class="orange-label-border">
+							<li>{{'AUTHENTICATION'|translate}}</li>
+						</ul>
                         <div class="form-group">
                             <label>{{'SECURITY_SCHEME'|translate}}:</label>
                             <input class="form-control" ng-model='securityScheme' ng-click='selectParameter("SECURITY_SCHEME")'>
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <h2>Headers</h2><hr class="line-one">
+                        <ul class="orange-label-border">
+							<li>{{'HEADERS'|translate}}</li>
+						</ul>
                         <div class="form-group">
                             <label>{{'AUTHORIZATION_INFORMATION'|translate}}:</label>
                             <input class="form-control" ng-model='authorizationInformation' ng-click='selectParameter("AUTHORIZATION_INFORMATION")'>
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <h2>{{'QUERY_PARAMETERS'|translate}}</h2><hr class="line-one">
+                        <ul class="orange-label-border">
+							<li>{{'QUERY_PARAMETERS'|translate}}</li>
+						</ul>
                     </div>
                 </div>
-                <div ng-if='currentCredentialType === "credentialList"'>
-                    <div class="row">
-                        <div class='col-sm-6'>
-                            <div class="form-group">
-                                <label>{{'IPV4'|translate}}:</label>
-                                <input type="text" class="form-control" ng-model='credentialListParameters.IPV4' ng-click='selectParameter("IPV4")'>
-                            </div>
-                            <div class="form-group">
-                                <label>{{'DOMAIN'|translate}}:</label>
-                                <input type="text" class="form-control" ng-model='credentialListParameters.domain' ng-click='selectParameter("DOMAIN")'>
-                            </div>
-                            <div class="form-group">
-                                <label>{{'LOGIN_AUTHORIZATION_METHOD_CONFIGURATION'|translate}}:</label>
-                                <input type="text" class="form-control" ng-model='credentialListParameters.loginAuthorizationMethodConfiguration' ng-click='selectParameter("LOGIN_AUTHORIZATION_METHOD_CONFIGURATION")'>
-                            </div>
-                            <div class="form-group">
-                                <label>{{'LOGIN_USERNAME'|translate}}:</label>
-                                <input type="text" class="form-control" ng-model='credentialListParameters.loginUserName' ng-click='selectParameter("LOGIN_USERNAME")'>
-                            </div>
+                <div class="row" ng-if='currentCredentialType === "credentialList"'>
+                    <div class='col-sm-6'>
+                        <div class="form-group">
+                            <label>{{'IPV4'|translate}}:</label>
+                            <input type="text" class="form-control" ng-model='credentialListParameters.IPV4' ng-click='selectParameter("IPV4")'>
                         </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label>{{'HOSTNAME'|translate}}:</label>
-                                <input type="text" class="form-control" ng-model='credentialListParameters.hostname' ng-click='selectParameter("HOSTNAME")'>
-                            </div>
-                            <div class="form-group">
-                                <label>{{'CREDENTIAL_TYPE'|translate}}:</label>
-                                <input type="text" class="form-control" ng-model='credentialListParameters.credentialType' ng-click='selectParameter("CREDENTIAL_TYPE")'>
-                            </div>
+                        <div class="form-group">
+                            <label>{{'DOMAIN'|translate}}:</label>
+                            <input type="text" class="form-control" ng-model='credentialListParameters.domain' ng-click='selectParameter("DOMAIN")'>
+                        </div>
+                        <div class="form-group">
+                            <label>{{'LOGIN_AUTHORIZATION_METHOD_CONFIGURATION'|translate}}:</label>
+                            <input type="text" class="form-control" ng-model='credentialListParameters.loginAuthorizationMethodConfiguration' ng-click='selectParameter("LOGIN_AUTHORIZATION_METHOD_CONFIGURATION")'>
+                        </div>
+                        <div class="form-group">
+                            <label>{{'LOGIN_USERNAME'|translate}}:</label>
+                            <input type="text" class="form-control" ng-model='credentialListParameters.loginUserName' ng-click='selectParameter("LOGIN_USERNAME")'>
                         </div>
                     </div>
-                </div>
-                <div ng-if='currentCredentialType !== "credentialList"'>
-                    <div class="row">
-                        <div class='col-sm-6'>
-                            <div class="form-group">
-                                <label>{{'CREDENTIAL_ID'|translate}}:</label>
-                                <input type="text" class="form-control" ng-model='credentialsIdParameters.CredentialId' ng-click='selectParameter("CREDENTIAL_ID")'>
-                            </div>
-                            <div class="form-group">
-                                <label>{{'LOGIN_AUTHORIZATION_METHOD_CONFIGURATION'|translate}}:</label>
-                                <input type="text" class="form-control" ng-model='credentialsIdParameters.loginAuthorizationMethodConfiguration' ng-click='selectParameter("LOGIN_AUTHORIZATION_METHOD_CONFIGURATION")'>
-                            </div>
-                            <div class="form-group">
-                                <label>{{'LOGIN_USERNAME'|translate}}:</label>
-                                <input type="text" class="form-control" ng-model='credentialsIdParameters.loginUserName' ng-click='selectParameter("LOGIN_USERNAME")'>
-                            </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>{{'HOSTNAME'|translate}}:</label>
+                            <input type="text" class="form-control" ng-model='credentialListParameters.hostname' ng-click='selectParameter("HOSTNAME")'>
+                        </div>
+                        <div class="form-group">
+                            <label>{{'CREDENTIAL_TYPE'|translate}}:</label>
+                            <input type="text" class="form-control" ng-model='credentialListParameters.credentialType' ng-click='selectParameter("CREDENTIAL_TYPE")'>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-12 text-right buttons">
-                    <button type="button" class="btn btn-primary btn-md" ng-click="send()">{{'SEND_BUTTON'|translate}}</button>
-                    <button type="button" class="btn btn-primary btn-md" ng-click="clearContent()">{{'CLEAR_BUTTON'|translate}}</button>
+                <div class="row" ng-if='currentCredentialType !== "credentialList"'>
+                    <div class='col-sm-6'>
+                        <div class="form-group">
+                            <label>{{'CREDENTIAL_ID'|translate}}:</label>
+                            <input type="text" class="form-control" ng-model='credentialsIdParameters.CredentialId' ng-click='selectParameter("CREDENTIAL_ID")'>
+                        </div>
+                        <div class="form-group">
+                            <label>{{'LOGIN_AUTHORIZATION_METHOD_CONFIGURATION'|translate}}:</label>
+                            <input type="text" class="form-control" ng-model='credentialsIdParameters.loginAuthorizationMethodConfiguration' ng-click='selectParameter("LOGIN_AUTHORIZATION_METHOD_CONFIGURATION")'>
+                        </div>
+                        <div class="form-group">
+                            <label>{{'LOGIN_USERNAME'|translate}}:</label>
+                            <input type="text" class="form-control" ng-model='credentialsIdParameters.loginUserName' ng-click='selectParameter("LOGIN_USERNAME")'>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class='col-sm-12'>
+                        <div class="text-right">
+                            <button type="button" class="btn btn-primary btn-md" ng-click="send()">{{'SEND_BUTTON'|translate}}</button>
+                            <button type="button" class="btn btn-primary btn-md" ng-click="clearContent()">{{'CLEAR_BUTTON'|translate}}</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -111,15 +117,16 @@
 
 
         <!--Div Derecho-->
-        <div class="col-sm-3 rightBar">
+        <div class="col-md-3 col-sm-12 rightBar">
             <div class="well">
-                <div class="col-sm-12">
-                    <h2>{{selectedParameter}}</h2>
-                    <div>
-                        <label>{{parameterContentDescription}}</label>
-                        <label>{{parameterContentExampleText}}</label><br>
-                        <label>{{parameterContentExample}}</label>
-                    </div>
+                <div>
+                    <ul ng-hide="selectedParameter === ''" class="orange-label-border rightListBottomMargin">
+							<li>{{selectedParameter}}</li>
+						</ul>
+                    <label class="descriptionLabel">{{parameterContentDescription}}</label>
+                    <br>
+                    <label>{{parameterContentExampleText}}</label><br>
+                    <label>{{parameterContentExample}}</label>
                 </div>
             </div>
         </div>
@@ -132,7 +139,7 @@
             <div class="col-sm-12">
                 <div class="well clearfix">
                     <h2>{{'REQUEST_URL'|translate}}</h2>
-                    <label>{{url}}</label>
+                    <label class="resultLabel">{{url}}</label>
                     <table class="table table-borderless">
                         <thead>
                             <tr>

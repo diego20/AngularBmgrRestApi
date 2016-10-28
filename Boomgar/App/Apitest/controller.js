@@ -17,7 +17,7 @@ function MainController($scope, $log, $location, $state, baseService, $translate
                 };
             }
         }
-        else if($scope.currentCredentialType === 'credentialId' || $scope.currentCredentialType === 'credentialPost'){
+        else if($scope.currentCredentialType === 'credentialId' || $scope.currentCredentialType === 'credentialPost' || $scope.currentCredentialType === 'credentialDelete'){
             for(i = 0; i < lengthCredentialsIdParameters; i ++){
                 $scope.parametersArray[i] = {
                     'Name': arrayCredentialsIdParameters[i],
@@ -29,7 +29,7 @@ function MainController($scope, $log, $location, $state, baseService, $translate
         //https://localhost:44325/api/Credential/
         //https://52.7.15.19/BomgarVaultWebAPI/api/Credential/
         //https://localhost/BomgarVaultWebAPI/api/Credential/
-        $scope.url = baseService.setParams($scope.parametersArray, 'https://localhost/BomgarVaultWebAPI/api/Credential/','');
+        $scope.url = baseService.setParams($scope.parametersArray, 'https://localhost:44325/api/Credential/','');
         var successFunction = function(success, headers){
             $scope.results = success;
             $scope.responseHeaders = headers();
@@ -46,14 +46,17 @@ function MainController($scope, $log, $location, $state, baseService, $translate
             baseService.getResource($scope.url, headers, successFunction, errorFunction);
         }else if($scope.currentCredentialType === 'credentialPost'){
             baseService.postResource($scope.url, headers, successFunction, errorFunction);
+        }else if($scope.currentCredentialType === 'credentialDelete'){
+            baseService.deleteResource($scope.url, headers, successFunction, errorFunction);
         }
         $scope.hideResults = false;
     };
 
-
     $scope.clearContent = function(){
         $scope.parameterContentDescription = '';
         $scope.parameterContentExample = '';
+        $scope.parameterContentExampleText = '';
+        $scope.selectedParameter = '';
         $scope.authorizationInformation = '';
         $scope.securityScheme = '';
 
@@ -84,7 +87,7 @@ function MainController($scope, $log, $location, $state, baseService, $translate
             $scope.selectedParameter = '';
             $scope.parameterContentDescription = '';
             $scope.parameterContentExample = '';
-            credentialType === 'credentialPost' ? $scope.headerRestType = 'POST' : $scope.headerRestType = 'GET';
+            credentialType === 'credentialPost' ? $scope.headerRestType = 'POST' : credentialType === 'credentialGet' ? $scope.headerRestType = 'GET' : $scope.headerRestType = 'DELETE';
         }
     }
 
@@ -182,6 +185,7 @@ function MainController($scope, $log, $location, $state, baseService, $translate
         $scope.credentialsIdParameters.loginUserName = '';
         $scope.credentialsIdParameters.loginAuthorizationMethodConfiguration = '';
         $scope.credentialsIdParameters.CredentialId = '';
+        $scope.parameterContentExampleText = '';
 
         $scope.url = '';
         $scope.results = '';

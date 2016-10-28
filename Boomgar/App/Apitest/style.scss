@@ -7,3 +7,25 @@
     border-style: solid !important;
     border-width: thin !important;
 }
+
+.resultLabel{
+    margin-bottom: 30px;
+}
+
+.descriptionLabel{
+    margin-bottom: 15px;
+}
+
+.rightBar{
+    .well{
+        padding-top: 8px !important;
+    }
+}
+
+.rightListBottomMargin{
+    margin-bottom: 22px;
+}
+
+.table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th{
+    padding-top: 0px;
+}
