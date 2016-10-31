@@ -29,7 +29,7 @@ function MainController($scope, $log, $location, $state, baseService, $translate
         //https://localhost:44325/api/Credential/
         //https://52.7.15.19/BomgarVaultWebAPI/api/Credential/
         //https://localhost/BomgarVaultWebAPI/api/Credential/
-        $scope.url = baseService.setParams($scope.parametersArray, 'https://localhost:44325/api/Credential/','');
+        $scope.url = baseService.setParams($scope.parametersArray, 'https://52.7.15.19/BomgarVaultWebAPI/api/Credential/','');
         var successFunction = function(success, headers){
             $scope.results = success;
             $scope.responseHeaders = headers();
