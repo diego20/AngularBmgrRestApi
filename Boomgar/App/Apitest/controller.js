@@ -87,7 +87,9 @@ function MainController($scope, $log, $location, $state, baseService, $translate
             $scope.selectedParameter = '';
             $scope.parameterContentDescription = '';
             $scope.parameterContentExample = '';
-            credentialType === 'credentialPost' ? $scope.headerRestType = 'POST' : credentialType === 'credentialGet' ? $scope.headerRestType = 'GET' : $scope.headerRestType = 'DELETE';
+            credentialType === 'credentialPost' ? $scope.headerRestType = 'POST' : credentialType === 'credentialDelete' ? $scope.headerRestType = 'DELETE' : $scope.headerRestType = 'GET';
+        }else{
+            $scope.currentCredentialType = '';
         }
     }
 
@@ -193,8 +195,8 @@ function MainController($scope, $log, $location, $state, baseService, $translate
     }
 
     var init = function () {
-        $scope.currentCredentialType = 'credentialList';
-        $scope.headerRestType = 'GET';
+        $scope.currentCredentialType = '';
+        $scope.headerRestType = '';
         $scope.selectedParameter = '';
         $scope.parameterContentDescription = '';
         $scope.parameterContentExample = '';

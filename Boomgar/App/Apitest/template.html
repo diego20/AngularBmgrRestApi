@@ -24,9 +24,14 @@
         </div>
         <!--#Div de left bar-->
 
+        <div class="col-md-10 col-sm-9" ng-if='currentCredentialType === ""'>
+            <div class="well clearfix">
+                <img class="introImage" src="../../Assets/graphic.png">
+            </div>
+        </div>
 
         <!--Div central-->
-        <div class="col-md-7 col-sm-9">
+        <div ng-if='currentCredentialType !== ""' class="col-md-7 col-sm-9">
             <div class="well clearfix">
                 <div class="col-12 header-well text-right">
                     <span>{{'CREDENTIAL'|translate}}</span>
@@ -117,7 +122,7 @@
 
 
         <!--Div Derecho-->
-        <div class="col-md-3 col-sm-12 rightBar">
+        <div ng-if='currentCredentialType !== ""' class="col-md-3 col-sm-12 rightBar">
             <div class="well">
                 <div>
                     <ul ng-hide="selectedParameter === ''" class="orange-label-border rightListBottomMargin">
