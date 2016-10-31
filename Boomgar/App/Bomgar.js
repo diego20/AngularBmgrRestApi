@@ -2,7 +2,6 @@ console.log('App Loaded');
 var angular = require('angular');
 require('./bomgar.scss');
 require('bootstrap-material-design/dist/css/bootstrap-material-design.css');
-//require("../Style/main.css");
 require("../Style/less/main.less");
 require("angular-translate");
 
